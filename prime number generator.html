@@ -2,16 +2,14 @@
 <h1>
 Prime Number Generator
 </h1>
-<button onclick = generatePrimes(getRndInteger(100,2000))>
-Generate Primes
-</button>
+
 <form id="numOfPrimesToGenerate">
-        <label for="number">Until where to generate primes</label>
-        <input type="number" id="num" required>
+        <label for="number">Search for primes between 1 and ...</label>
+        <input type="number" id="num" required autofocus autocomplete>
         <button type="submit">Submit</button>
 </form>
 
-<p id = "out">
+<p id = "out",style="text-align:center;">
 </p>
 
 <script>
@@ -21,6 +19,7 @@ function getRndInteger(min, max) {
     }
  
  function generatePrimes(length){
+  let startTime = Date.now()
   let listOfPrimes = [2]
   for ( let thisNum = 3; thisNum <= length; thisNum++ ){
   let isPrime = true
@@ -38,6 +37,7 @@ function getRndInteger(min, max) {
    }
   }
   console.log("Generated primes from 1 to ", length, " \nprimes: ",listOfPrimes)
+  console.log(Date.now()-startTime, "ms")
   return listOfPrimes
  }
 
@@ -46,6 +46,6 @@ function getRndInteger(min, max) {
             event.preventDefault();
 			let num = document.getElementById("num").value;
             let out = generatePrimes(num)
-			document.getElementById("out").value = out;
+			document.getElementById("out").innerHTML = "<b>Generated " + out.length + " primes </b><br><br>" + out.join("<br>") ;
         });
 </script>
