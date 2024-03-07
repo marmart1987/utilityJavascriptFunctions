@@ -1,0 +1,51 @@
+<!-- Generate Primes -->
+<h1>
+Prime Number Generator
+</h1>
+<button onclick = generatePrimes(getRndInteger(100,2000))>
+Generate Primes
+</button>
+<form id="numOfPrimesToGenerate">
+        <label for="number">Until where to generate primes</label>
+        <input type="number" id="num" required>
+        <button type="submit">Submit</button>
+</form>
+
+<p id = "out">
+</p>
+
+<script>
+
+function getRndInteger(min, max) {
+       return Math.floor(Math.random() * (max - min) ) + min;
+    }
+ 
+ function generatePrimes(length){
+  let listOfPrimes = [2]
+  for ( let thisNum = 3; thisNum <= length; thisNum++ ){
+  let isPrime = true
+   for ( let index  in listOfPrimes){
+    
+    let prime = listOfPrimes[index];
+    if( thisNum% prime == 0){
+	 isPrime = false
+      break;
+    }
+	 
+   }
+   if(isPrime == true){   
+   listOfPrimes.push(thisNum)
+   }
+  }
+  console.log("Generated primes from 1 to ", length, " \nprimes: ",listOfPrimes)
+  return listOfPrimes
+ }
+
+ document.getElementById("numOfPrimesToGenerate").addEventListener("submit", function (event) {
+           
+            event.preventDefault();
+			let num = document.getElementById("num").value;
+            let out = generatePrimes(num)
+			document.getElementById("out").value = out;
+        });
+</script>
