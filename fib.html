@@ -1,0 +1,18 @@
+<button onclick = generateFib(getRndInteger(1,100))>
+Random Number Fibonacci Generator!
+</button>
+<script>
+    function getRndInteger(min, max) {
+       return Math.floor(Math.random() * (max - min) ) + min;
+    }
+	function generateFib(len){
+		let out = [1,1];
+		let prevNum = 0;
+		for (i = 2; i < len; i ++){
+		  out.push(out[i-1]+out[i-2])
+		}
+		console.log("The Fibbonachi Sequence up to " +len+" is: "+out)
+	}
+	
+	//Code by Martin D. Thomas 7-ARN37. 2024
+</script>
