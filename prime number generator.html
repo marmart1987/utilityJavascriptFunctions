@@ -4,8 +4,8 @@ Prime Number Generator
 </h1>
 
 <form id="numOfPrimesToGenerate">
-        <label for="number">Search for primes between 1 and ...</label>
-        <input type="number" id="num" required autofocus autocomplete>
+        <label for="num">Search for primes between 1 and ...</label>
+        <input type="number" id="num" required autofocus >
         <button type="submit">Submit</button>
 </form>
 
@@ -36,8 +36,8 @@ function getRndInteger(min, max) {
    listOfPrimes.push(thisNum)
    }
   }
-  console.log("Generated primes from 1 to ", length, " \nprimes: ",listOfPrimes)
-  console.log(Date.now()-startTime, "ms")
+ // console.log("Generated primes from 1 to ", length, " \nprimes: ",listOfPrimes)
+  console.log("It took", Date.now()-startTime, "ms to generate ", listOfPrimes.length, " primes")
   return listOfPrimes
  }
 
