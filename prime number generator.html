@@ -8,17 +8,26 @@ Prime Number Generator
         <input type="number" id="num" required autofocus >
         <button type="submit">Submit</button>
 </form>
+<form id="isPrimeInput">
+        <label for="num2"> Is this prime </label>
+        <input type="number" id="num2" required autofocus >
+        <button type="submit">Submit</button>
+</form>
 
 <p id = "out",style="text-align:center;">
 </p>
 
 <script>
-
+let primesCache = []
 function getRndInteger(min, max) {
        return Math.floor(Math.random() * (max - min) ) + min;
     }
  
  function generatePrimes(length){
+ if(length <= primesCache[primesCache.length-1]){
+  return primesCache.slice(0,length)  
+ }
+  primesCache.pop()
   let startTime = Date.now()
   let listOfPrimes = [2]
   for ( let thisNum = 3; thisNum <= length; thisNum++ ){
@@ -38,14 +47,42 @@ function getRndInteger(min, max) {
   }
  // console.log("Generated primes from 1 to ", length, " \nprimes: ",listOfPrimes)
   console.log("It took", Date.now()-startTime, "ms to generate ", listOfPrimes.length, " primes")
+  if(listOfPrimes.length > primesCache.length){
+   primesCache = listOfPrimes;
+  }
+  primesCache.push(length)
+  
   return listOfPrimes
  }
-
  document.getElementById("numOfPrimesToGenerate").addEventListener("submit", function (event) {
            
             event.preventDefault();
 			let num = document.getElementById("num").value;
             let out = generatePrimes(num)
 			document.getElementById("out").innerHTML = "<b>Generated " + out.length + " primes </b><br><br>" + out.join("<br>") ;
-        });
+});
+		
+		
+		
+function isPrime(number) {
+ let index = generatePrimes(number)
+ console.log(index)
+ index = index.indexOf(number)
+ if( index === -1){
+ return false
+ }else{
+ console.log(true)
+ return true
+ }
+}
+ document.getElementById("isPrimeInput").addEventListener("submit", async function (event) {
+           
+            event.preventDefault();
+			let num = document.getElementById("num2").value;
+			console.log(num)
+            let out = isPrime(num)
+			console.log(out,"result")
+			document.getElementById("out").innerHTML = out;
+});
+
 </script>
